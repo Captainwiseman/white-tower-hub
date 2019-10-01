@@ -1,40 +1,42 @@
 <script>
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+	import Sidebar from './Sidebar';
+	import Topbar from './Topbar';
+	import MainSection from './MainSection'
 </script>
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-		<Sidebar />
+	<Sidebar />
 
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
 
-			<!-- Main Content -->
-			<div id="content">
-				<Topbar />
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2019</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
+		<!-- Main Content -->
+		<div id="content">
+			<Topbar />
+			<MainSection />
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Your Website 2019</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
 
 	</div>
-	<!-- End of Page Wrapper -->
+	<!-- End of Content Wrapper -->
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
-	</a>
+</div>
+<!-- End of Page Wrapper -->
 
-	<Topbar />
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+	<i class="fas fa-angle-up"></i>
+</a>
+
+<Topbar />
