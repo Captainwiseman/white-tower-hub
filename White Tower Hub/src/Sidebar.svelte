@@ -1,3 +1,44 @@
+<script>
+    // Possible Idea:
+    // Change the entire nav system for the sidebar to be more visually.
+    // Meaning the entire menu logic is managed in the App.sevelte, giving props to the sidebar for which menu item to render (category/nav items).
+    // That way the logic of the items are on master and being handled through one main source across the app
+
+    import NavButton from './NavButton.svelte'
+    import {createEventDispatcher} from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let navButtons = {
+        dashboard: {
+            active: true
+        },
+        msgboard: {
+            active: false
+        }
+    }
+
+    const changeActiveTab = (event) => {
+        if (event.detail.changeTab) {
+            const tabToSwitchTo = event.detail.changeTab
+
+            for (let navButton in navButtons) {
+                navButtons[navButton].active = false
+            }
+            navButtons[tabToSwitchTo].active = !navButtons[tabToSwitchTo].active
+            console.log("Sidebar got a request to change the tab to", tabToSwitchTo)
+            dispatch("navClick", {
+                changeTab: tabToSwitchTo
+            })
+        } else if (event.detail.refreshTab) {
+            console.log("Sidebar got a request to refresh current tab")
+            dispatch("navClick", {
+                refreshTab: true
+            })
+        }
+
+    }
+</script>
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -13,11 +54,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
+    <NavButton title="Dashboard" active={navButtons.dashboard.active} tabId="dashboard"
+        iconClass="fas fa-fw fa-tachometer-alt" on:navClick={changeActiveTab} />
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -28,13 +66,8 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="blank" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
-            <i class="far fa-comments"></i>
-            <span>Message Board</span>
-        </a>
-    </li>
+    <NavButton title="Message Board" active={navButtons.msgboard.active} tabId="msgboard" iconClass="far fa-comments"
+        on:navClick={changeActiveTab} />
 
     <!-- Divider -->
     <hr class="sidebar-divider">

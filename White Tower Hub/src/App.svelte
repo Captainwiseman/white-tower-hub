@@ -1,12 +1,21 @@
 <script>
 	import Sidebar from './Sidebar';
 	import Topbar from './Topbar';
-	import MainSection from './MainSection'
+	import ActiveTab from './ActiveTab'
+
+	let currentTab = 'dashboard'
+
+	const handleNavClick = (event) => {
+		if (event.detail.changeTab) {
+			currentTab = event.detail.changeTab
+		}
+		
+	}
 </script>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-	<Sidebar />
+	<Sidebar on:navClick = {handleNavClick}/>
 
 	<!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
@@ -14,7 +23,7 @@
 		<!-- Main Content -->
 		<div id="content">
 			<Topbar />
-			<MainSection />
+			<ActiveTab currentTab={currentTab}/>
 		</div>
 		<!-- End of Main Content -->
 
@@ -22,7 +31,7 @@
 		<footer class="sticky-footer bg-white">
 			<div class="container my-auto">
 				<div class="copyright text-center my-auto">
-					<span>Copyright &copy; Your Website 2019</span>
+					<span>White Tower 2019</span>
 				</div>
 			</div>
 		</footer>
@@ -38,5 +47,3 @@
 <a class="scroll-to-top rounded" href="#page-top">
 	<i class="fas fa-angle-up"></i>
 </a>
-
-<Topbar />

@@ -1,22 +1,30 @@
 <script>
+    import {createEventDispatcher} from 'svelte';
+    const dispatch = createEventDispatcher();
+
     export let active = false
     export let title
-    export let linkToTab
+    export let tabId
     export let iconClass
-    
-    let navItemClass = "nav-item";
-    if (active) {
-        navItemClass = "nav-item active";
-    }
-    console.log(navItemClass)
-    let changeTab = (tabId) => {
-        console.log("need to redirect to:", tabId)
-        if (active === false) {navItemClass = "nav-item active"}
+
+   $: navItemClass = active ? "nav-item active" : "nav-item";
+    let changeTab = () => {
+        if (active) {
+            dispatch("navClick", {
+                refreshTab: true
+            })
+        } else {
+            // navItemClass = "nav-item active"
+            active = true
+            dispatch("navClick", {
+                changeTab: tabId
+            })
+        }
     }
 </script>
 
 <li class={navItemClass}>
-    <a class="nav-link" href="javascript:;" on:click={()=> changeTab(linkToTab)}>
+    <a class="nav-link" href="javascript:;" on:click={()=> changeTab()}>
         <i class={iconClass}></i>
         <span>{title}</span>
     </a>
