@@ -24,8 +24,8 @@
 </script>
 
 <li class={navItemClass}>
-    <a class="nav-link" href="javascript:;" on:click={()=> changeTab()}>
+    <span class="nav-link" on:click={()=> changeTab()}>
         <i class={iconClass}></i>
         <span>{title}</span>
-    </a>
+    </span>
 </li>

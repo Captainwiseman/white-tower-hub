@@ -11,3 +11,7 @@
 .demo-card-wide>.mdl-card__menu {
     color: #fff;
 }
+
+.nav-link:hover {
+    cursor: pointer;
+}
