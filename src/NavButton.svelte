@@ -2,28 +2,31 @@
     import {createEventDispatcher} from 'svelte';
     const dispatch = createEventDispatcher();
 
+
     export let active = false
     export let title
     export let tabId
     export let iconClass
 
-   $: navItemClass = active ? "nav-item active" : "nav-item";
+   $: liCSSClass = active ? "nav-item active" : "nav-item";
     let changeTab = () => {
         if (active) {
-            dispatch("navClick", {
-                refreshTab: true
+            dispatch("navigationButtonClicked", {
+                shouldChangeActiveTab: false,
+                shouldRefreshActiveTab: true
             })
         } else {
-            // navItemClass = "nav-item active"
+            // liCSSClass = "nav-item active"
             active = true
-            dispatch("navClick", {
-                changeTab: tabId
+            dispatch("navigationButtonClicked", {
+                shouldChangeActiveTab: true,
+                changeActiveTabTo: tabId
             })
         }
     }
 </script>
 
-<li class={navItemClass}>
+<li class={liCSSClass}>
     <span class="nav-link" on:click={()=> changeTab()}>
         <i class={iconClass}></i>
         <span>{title}</span>

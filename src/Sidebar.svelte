@@ -18,8 +18,8 @@
     }
 
     const changeActiveTab = (event) => {
-        if (event.detail.changeTab) {
-            const tabToSwitchTo = event.detail.changeTab
+        if (event.detail.shouldChangeActiveTab) {
+            const tabToSwitchTo = event.detail.tabId
 
             for (let navButton in navButtons) {
                 navButtons[navButton].active = false
@@ -27,12 +27,12 @@
             navButtons[tabToSwitchTo].active = !navButtons[tabToSwitchTo].active
             console.log("Sidebar got a request to change the tab to", tabToSwitchTo)
             dispatch("navClick", {
-                changeTab: tabToSwitchTo
+                shouldChangeActiveTab: tabToSwitchTo
             })
-        } else if (event.detail.refreshTab) {
+        } else if (event.detail.shouldRefreshActiveTabshouldRefreshActiveTab) {
             console.log("Sidebar got a request to refresh current tab")
             dispatch("navClick", {
-                refreshTab: true
+                shouldRefreshActiveTab: true
             })
         }
 
